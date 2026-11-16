@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes commandes - RIO STORE DESIGN</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Mes commandes 🛍️</h1>
+    <h2>Chiffre d'affaires total :</h2>
+<h2>{{ "{:,.0f}".format(total_ventes) }} FCFA</h2>
+    <div class="tableau-bord">
+
+    <div class="statistique">
+        <h3>Nombre de commandes</h3>
+        <p>{{ nombre_commandes }}</p>
+    </div>
+
+    <div class="statistique">
+        <h3>Paiements Wave</h3>
+        <p>{{ nombre_wave }}</p>
+    </div>
+
+    <div class="statistique">
+        <h3>Paiements Orange Money</h3>
+        <p>{{ nombre_orange }}</p>
+    </div>
+
+</div>
+    <a href="{{ url_for('deconnexion') }}">
+    <button>Déconnexion</button>
+</a>
+
+    <div class="tableau-bord">
+
+    <div class="statistique">
+        <h3>Nombre de commandes</h3>
+        <p>{{ nombre_commandes }}</p>
+    </div>
+
+    <div class="statistique">
+        <h3>Paiements Wave</h3>
+        <p>{{ nombre_wave }}</p>
+    </div>
+
+    <div class="statistique">
+        <h3>Paiements Orange Money</h3>
+        <p>{{ nombre_orange }}</p>
+    </div>
+
+</div>
+<table class="table-commandes"></table>
+        <tr>
+            <th>Numéro</th>
+            <th>Nom</th>
+            <th>Téléphone</th>
+            <th>Adresse</th>
+            <th>Paiement</th>
+            <th>Total</th>
+        </tr>
+
+        {% for commande in commandes %}
+        <tr>
+            <td>{{ commande[0] }}</td>
+            <td>{{ commande[1] }}</td>
+            <td>{{ commande[2] }}</td>
+            <td>{{ commande[3] }}</td>
+            <td>{{ commande[4] }}</td>
+            <td>{{ commande[5] }} FCFA</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

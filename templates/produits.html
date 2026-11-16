@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des produits - RIO STORE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>RIO STORE DESIGN</h1>
+        <h2>Gestion des produits</h2>
+    </header>
+
+    <section class="products">
+        <h2>Ajouter un produit</h2>
+
+        <form action="{{ url_for('ajouter_produit') }}" method="POST">
+
+            <input type="text" name="nom" placeholder="Nom du produit" required>
+            <br><br>
+
+            <input type="number" name="prix" placeholder="Prix en FCFA" min="1" required>
+            <br><br>
+
+            <input type="text" name="image" placeholder="Nom de l'image (ex: chaussure.jpg)" required>
+            <br><br>
+
+            <button type="submit">Ajouter le produit</button>
+
+        </form>
+    </section>
+
+    <section class="products">
+        <h2>Mes produits</h2>
+
+       
+{% for produit in produits %}
+    <div class="product">
+        <h3>{{ produit[1] }}</h3>
+        <p>{{ produit[2] }} FCFA</p>
+        <p>Image : {{ produit[3] }}</p>
+
+        <form action="{{ url_for('modifier_produit', id=produit[0]) }}" method="POST">
+            <input type="number" name="prix" placeholder="Nouveau prix" min="1" required>
+            <button type="submit">Modifier le prix</button>
+        </form>
+
+        <form action="{{ url_for('supprimer_produit', id=produit[0]) }}" method="POST">
+            <button type="submit">Supprimer le produit</button>
+        </form>
+    </div>
+{% endfor %}
+
+    </section>
+
+    <p><a href="{{ url_for('afficher_commandes') }}">Retour aux commandes</a></p>
+
+</body>
+</html>

@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIO STORE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f6f2;
+            color: #222;
+        }
+
+        header {
+            background: #171717;
+            color: white;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: #d6ad60;
+            letter-spacing: 3px;
+        }
+.logo-rs {
+    color: #d6ad60;
+    font-size: 35px;
+    margin-right: 10px;
+    text-shadow: 0 0 10px rgba(214, 173, 96, 0.5);
+}
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .hero {
+    padding: 120px 8%;
+    text-align: center;
+    background: linear-gradient(135deg, #171717, #39312a);
+    color: white;
+}
+
+.hero h2 {
+    color: #d6ad60;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+.hero a {
+    display: inline-block;
+    background: #d6ad60;
+    color: #171717;
+    padding: 16px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+        .hero h2 {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .hero a {
+            background: #171717;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .products {
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .products h2 {
+            margin-bottom: 30px;
+            font-size: 30px;
+        }
+
+        .product {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 300px;
+            margin: auto;
+        }
+
+        #boutique {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+#boutique h2 {
+    grid-column: 1 / -1;
+}
+
+#boutique .product {
+    max-width: 100%;
+    margin: 0;
+}
+#boutique .product {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+    transition: 0.3s;
+}
+
+#boutique .product:hover {
+    transform: translateY(-5px);
+}
+
+#boutique .product h3 {
+    margin: 15px 0;
+    font-size: 22px;
+}
+
+#boutique .product p {
+    color: #b38b42;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#boutique .product button {
+    background: #171717;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#boutique .product button:hover {
+    background: #d6ad60;
+    color: #171717;
+}
+
+        footer {
+            background: #171717;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+    .hero a {
+    transition: 0.3s;
+}
+
+.hero a:hover {
+    background: white;
+    color: #171717;
+    transform: scale(1.05);
+}
+</style>
+<style>
+.product img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.avantages {
+    padding: 60px 8%;
+    text-align: center;
+    background: #eee8dd;
+}
+
+.avantages h2 {
+    margin-bottom: 35px;
+    color: #171717;
+}
+
+.avantages-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.avantage {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.avantage h3 {
+    color: #b38b42;
+    margin-bottom: 15px;
+}
+@media (max-width: 768px) {
+    #boutique {
+        grid-template-columns: 1fr;
+    }
+
+    .avantages-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h2 {
+        font-size: 30px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav a {
+        margin: 5px;
+    }
+}
+</style></head>
+
+<body>
+
+    <header>
+        <h1>
+    <span class="logo-rs">♛ RS</span> RIO STORE
+    <small>STYLE • QUALITÉ • ÉLÉGANCE</small>
+</h1>
+
+        <nav>
+    <a href="#">Accueil</a>
+    <a href="#boutique">Produits</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
+</nav>
+    </header>
+
+    
+<section class="hero">
+    <h2>BIENVENUE CHEZ RIO STORE</h2>
+
+    <p>
+        L'élégance, le style et la qualité à votre portée.
+        Découvrez notre nouvelle collection.
+    </p>
+
+    <a href="#boutique">DÉCOUVRIR LA COLLECTION</a>
+</section>
+
+
+
+
+<section class="avantages">
+    <h2>POURQUOI CHOISIR RIO STORE ?</h2>
+
+    <div class="avantages-container">
+        <div class="avantage">
+            <h3>✨ Qualité</h3>
+            <p>Des articles sélectionnés avec soin.</p>
+        </div>
+
+        <div class="avantage">
+            <h3>🚚 Livraison</h3>
+            <p>Recevez vos commandes facilement.</p>
+        </div>
+
+        <div class="avantage">
+            <h3>💎 Élégance</h3>
+            <p>Le style qui vous distingue.</p>
+        </div>
+    </div>
+</section>
+<section class="apropos" id="apropos">
+    <h2>À propos de RIO STORE</h2>
+    <p>
+        Bienvenue chez RIO STORE !
+        Nous vous proposons des vêtements et chaussures
+        élégants, modernes et de qualité.
+        Notre objectif est de vous offrir le meilleur style
+        au meilleur prix.
+    </p>
+</section>
+<section class="products" id="boutique">
+
+    <h2>Nos produits</h2>
+
+    {% for produit in produits %}
+
+        <div class="product">
+
+            <img
+                src="{{ url_for('static', filename='images/' + produit[3]) }}"
+                alt="{{ produit[1] }}"
+            >
+
+            <h3>{{ produit[1] }}</h3>
+
+            <p>{{ produit[2] }} FCFA</p>
+
+            <button
+                class="ajouter-panier"
+                onclick="ajouterAuPanier(this.dataset.nom, Number(this.dataset.prix))"
+                data-nom="{{ produit[1] }}"
+                data-prix="{{ produit[2] }}">
+                Ajouter au panier
+            </button>
+
+        </div>
+
+    {% else %}
+
+        <p>Aucun produit disponible pour le moment.</p>
+
+    {% endfor %}
+
+</section>
+
+
+   
+    <section class="products" id="panier">
+    <h2>Mon panier 🛒</h2>
+    <div id="liste-panier">
+        Aucun article dans le panier.
+    </div>
+    <h3>Total : <span id="total">0</span> FCFA</h3>
+</section><section class="products" id="paiement">
+    <h2>Mode de paiement</h2>
+
+    <label for="paiement">Choisissez votre paiement :</label>
+
+    <select id="moyen-paiement">
+        <option value="">Choisir un moyen de paiement</option>
+        <option value="Wave">Wave</option>
+        <option value="Orange Money">Orange Money</option>
+    </select>
+
+    <p>Votre paiement sera confirmé après vérification.</p>
+</section>
+<button onclick="commander()">
+    Commander
+</button>
+     
+<section class="products">
+    <h2>Informations du client</h2>
+
+    <input type="text" id="nom-client" placeholder="Votre nom complet">
+
+    <br><br>
+
+    <input type="tel" id="telephone-client" placeholder="Votre téléphone">
+
+    <br><br>
+
+    <input type="text" id="adresse-client" placeholder="Votre adresse">
+</section>
+```html
+<footer id="contact">
+    <h2><span class="logo-rs">♛ RS</span> RIO STORE</h2>
+
+    <p>Votre style, notre passion.</p>
+    <p>Style • Qualité • Élégance</p>
+
+    <a href="https://wa.me/221767449860"
+       target="_blank"
+       class="whatsapp">
+       💬 Contactez-nous sur WhatsApp
+    </a>
+
+    <p class="copyright">
+        © 2026 RIO STORE - Tous droits réservés.
+    </p>
+</footer>
+
+
+
+<script>
+let panier = [];
+let total = 0;
+
+function ajouterAuPanier(nom, prix) {
+    panier.push({nom: nom, prix: prix});
+    total += prix;
+    afficherPanier();
+}
+
+function afficherPanier() {
+    let liste = document.getElementById("liste-panier");
+
+    liste.innerHTML = "";
+
+    if (panier.length === 0) {
+        liste.innerHTML = "Aucun article dans le panier.";
+    }
+
+    panier.forEach((article, index) => {
+        liste.innerHTML += `
+            <p>
+                ${article.nom} : ${article.prix} FCFA
+                <button onclick="supprimerArticle(${index})">
+                    Supprimer
+                </button>
+            </p>
+        `;
+    });
+
+    document.getElementById("total").textContent =
+        total.toLocaleString("fr-FR");
+}
+
+function supprimerArticle(index) {
+    total -= panier[index].prix;
+    panier.splice(index, 1);
+    afficherPanier();
+}
+ 
+
+function commander() {
+    if (panier.length === 0) {
+        alert("Votre panier est vide !");
+        return;
+    }
+
+    let paiement = document.getElementById("moyen-paiement").value;
+
+    if (paiement === "") {
+        alert("Veuillez choisir Wave ou Orange Money.");
+        return;
+    }
+
+    let nom = document.getElementById("nom-client").value;
+let telephone = document.getElementById("telephone-client").value;
+let adresse = document.getElementById("adresse-client").value;
+
+if (!nom || !telephone || !adresse) {
+    alert("Veuillez remplir toutes vos informations.");
+    return;
+}
+
+let donnees = new FormData();
+
+donnees.append("nom", nom);
+donnees.append("telephone", telephone);
+donnees.append("adresse", adresse);
+donnees.append("paiement", paiement);
+donnees.append("total", total);
+
+fetch("/commander", {
+    method: "POST",
+    body: donnees
+})
+.then(reponse => reponse.text())
+.then(message => {
+    alert(message);
+})
+.catch(erreur => {
+    alert("Une erreur est survenue.");
+});
+}
+</script>
+<button id="retour-haut" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ↑ Retour en haut
+</button>
+</body>
+</html>
