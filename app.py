@@ -41,6 +41,18 @@ def creer_table_produits():
             image TEXT
         )
     """)
+    curseur.execute("SELECT COUNT(*) FROM produits")
+nombre = curseur.fetchone()[0]
+
+if nombre == 0:
+    curseur.executemany("""
+        INSERT INTO produits (nom, prix, image)
+        VALUES (?, ?, ?)
+    """, [
+        ("Vêtements", 25000, "vetement.jpg"),
+        ("Chaussures", 20000, "chaussure.jpg"),
+        ("Sacoche", 18000, "sacoche.jpg")
+    ])
 
     connexion.commit()
     connexion.close()
