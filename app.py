@@ -30,9 +30,11 @@ def creer_base():
     connexion.close()
 
 
+
 def creer_table_produits():
     connexion = sqlite3.connect(DB_PATH)
     curseur = connexion.cursor()
+
     curseur.execute("""
         CREATE TABLE IF NOT EXISTS produits (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -42,18 +44,23 @@ def creer_table_produits():
         )
     """)
 
-    curseur.execute("SELECT COUNT(*) FROM produits")
-    nombre = curseur.fetchone()[0]
+    produits = [
+        ("Vêtements", 25000, "vetement.jpg"),
+        ("Chaussures", 20000, "chaussure.jpg"),
+        ("Sacoche", 18000, "sacoche.jpg")
+    ]
 
-    if nombre == 0:
-        curseur.executemany("""
-            INSERT INTO produits (nom, prix, image)
-            VALUES (?, ?, ?)
-        """, [
-            ("Vêtements", 25000, "vetement.jpg"),
-            ("Chaussures", 20000, "chaussure.jpg"),
-            ("Sacoche", 18000, "sacoche.jpg")
-        ])
+    for nom, prix, image in produits:
+        curseur.execute(
+            "SELECT id FROM produits WHERE nom = ?",
+            (nom,)
+        )
+
+        if curseur.fetchone() is None:
+            curseur.execute("""
+                INSERT INTO produits (nom, prix, image)
+                VALUES (?, ?, ?)
+            """, (nom, prix, image))
 
     connexion.commit()
     connexion.close()
@@ -61,6 +68,7 @@ def creer_table_produits():
 
 creer_base()
 creer_table_produits()
+
 
 
 
