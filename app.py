@@ -5,6 +5,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "cle-temporaire-rio-store-2026")
+creer_table_produits()
 
 BASE_DIR = os.path.expanduser("~")
 DB_PATH = os.path.join(BASE_DIR, "commandes.db")
@@ -32,7 +33,6 @@ def creer_base():
 def creer_table_produits():
     connexion = sqlite3.connect(DB_PATH)
     curseur = connexion.cursor()
-
     curseur.execute("""
         CREATE TABLE IF NOT EXISTS produits (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -41,18 +41,19 @@ def creer_table_produits():
             image TEXT
         )
     """)
-    curseur.execute("SELECT COUNT(*) FROM produits")
-nombre = curseur.fetchone()[0]
 
-if nombre == 0:
-    curseur.executemany("""
-        INSERT INTO produits (nom, prix, image)
-        VALUES (?, ?, ?)
-    """, [
-        ("Vêtements", 25000, "vetement.jpg"),
-        ("Chaussures", 20000, "chaussure.jpg"),
-        ("Sacoche", 18000, "sacoche.jpg")
-    ])
+    curseur.execute("SELECT COUNT(*) FROM produits")
+    nombre = curseur.fetchone()[0]
+
+    if nombre == 0:
+        curseur.executemany("""
+            INSERT INTO produits (nom, prix, image)
+            VALUES (?, ?, ?)
+        """, [
+            ("Vêtements", 25000, "vetement.jpg"),
+            ("Chaussures", 20000, "chaussure.jpg"),
+            ("Sacoche", 18000, "sacoche.jpg")
+        ])
 
     connexion.commit()
     connexion.close()
