@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "cle-temporaire-rio-store-2026")
-creer_table_produits()
+
 
 BASE_DIR = os.path.expanduser("~")
 DB_PATH = os.path.join(BASE_DIR, "commandes.db")
@@ -265,3 +265,6 @@ def deconnexion():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+creer_base()
+creer_table_produits()
